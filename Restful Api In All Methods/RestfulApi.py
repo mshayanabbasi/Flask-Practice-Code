@@ -26,5 +26,11 @@ def update_one(name):
     langs = [language for language in languages if language['name']== name]
     langs[0]['name'] = request.json['name']
     return jsonify({'languages':langs[0]})
+@app.route('/lang/<string:name>', methods=['DELETE'])
+def delete_one(name):
+     lang = [language for language in languages if language['name']== name]
+     languages.remove(lang[0])
+     return jsonify({'languages': languages})
+
 if __name__ == '__main__':
-    app.run(host='localhost', debug=True, port=4000)
+    app.run(host='localhost', debug=True, port=5050)
